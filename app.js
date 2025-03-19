@@ -1,57 +1,33 @@
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
 const marked = require('marked');
-const frontMatter = require('front-matter');
-const hljs = require('highlight.js');
+const fs = require('fs');
+const path = require('path');
+
 const app = express();
-const port = 3000;
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files like CSS, JS, images
+app.use(express.static('public'));
 
-// Markdown files for blog posts
-const getPosts = () => {
-  const files = fs.readdirSync(path.join(__dirname, 'blog')).filter(file => file.endsWith('.md'));
-  return files.map(file => {
-    const filePath = path.join(__dirname, 'blog', file);
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const { attributes, body } = frontMatter(content);
-    return {
-      ...attributes,
-      content: marked(body),
-      filename: file
-    };
-  });
-};
-
-// Get the current blog posts
-const posts = getPosts();
-
-// Set up routes
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
-});
-
-app.get('/blog', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'blog.html'));
-});
-
+// Example route for rendering a blog post
 app.get('/blog/:slug', (req, res) => {
-  const post = posts.find(p => p.filename === `${req.params.slug}.md`);
-  if (!post) return res.status(404).send('Post not found');
+  const slug = req.params.slug;
+  const postPath = path.join(__dirname, 'posts', `${slug}.md`); // Assuming posts are saved as .md files
 
-  const prevPost = posts[posts.indexOf(post) - 1];
-  const nextPost = posts[posts.indexOf(post) + 1];
+  fs.readFile(postPath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(404).send('Post not found');
+    }
+    const htmlContent = marked(data); // Convert Markdown to HTML
 
-  res.render('post.html', {
-    post,
-    prevPost,
-    nextPost
+    // Render the post
+    res.render('post', { content: htmlContent });
   });
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+// Set up view engine (e.g., EJS or Pug)
+app.set('view engine', 'ejs');
+
+// Start server
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
 });

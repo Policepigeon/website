@@ -1,36 +1,77 @@
+/* Base styles for all themes */
 body {
-  font-family: Helvetica Neue, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-body.catppuccin-macchiato {
-  background-color: #1f1f1f;
-  color: #e0d7e8;
-}
-
-body.catppuccin-latte {
-  background-color: #f0d9d0;
-  color: #5f4b66;
-}
-
-body.synthwave {
-  background: linear-gradient(45deg, #ff00ff, #00ffff);
-  color: #fff;
-}
-
-header h1 {
-  font-family: 'Source Code Pro', monospace;
+  font-family: 'Helvetica Neue', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 button {
   background-color: #6200ea;
   color: white;
-  padding: 10px;
+  padding: 10px 20px;
   border: none;
   cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
   background-color: #3700b3;
+  transform: scale(1.05);
+}
+
+/* Catppuccin Macchiato (Lavender) */
+body.catppuccin-macchiato {
+  background-color: #1f1f1f;
+  color: #e0d7e8;
+}
+
+body.catppuccin-macchiato header {
+  background: linear-gradient(135deg, #5c4b6f, #f1d0f1);
+}
+
+/* Catppuccin Latte (Sky & Rosewater) */
+body.catppuccin-latte {
+  background-color: #f0d9d0;
+  color: #5f4b66;
+}
+
+body.catppuccin-latte header {
+  background: linear-gradient(135deg, #f9a8b1, #f7d8d6);
+}
+
+/* Synthwave */
+body.synthwave {
+  background: linear-gradient(45deg, #ff00ff, #00ffff);
+  color: #fff;
+  background-size: 400% 400%;
+  animation: gradientAnimation 5s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body.synthwave header {
+  background-color: #000;
+  text-shadow: 0px 0px 15px #ff00ff, 0px 0px 30px #ff00ff;
+}
+
+/* Header and button customization */
+header h1, header button {
+  font-family: 'Source Code Pro', monospace;
+}
+
+/* Add some extra styling for code blocks */
+code {
+  font-family: 'Source Code Pro', monospace;
+}
+
+pre code {
+  display: block;
+  padding: 15px;
+  background-color: #282a36;
+  border-radius: 5px;
+  overflow-x: auto;
 }
