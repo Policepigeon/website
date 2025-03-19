@@ -1,0 +1,16 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "Personal website with blog and programming projects",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "marked": "^4.0.12",
+    "front-matter": "^2.3.0",
+    "highlight.js": "^11.7.0",
+    "prismjs": "^1.27.0"
+  }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Blog</h1>
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </header>
+  <main>
+    <ul>
+      <% posts.forEach(post => { %>
+        <li><a href="/blog/<%= post.filename.replace('.md', '') %>"><%= post.title %></a></li>
+      <% }) %>
+    </ul>
+  </main>
+  <script src="/public/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+body {
+  font-family: Helvetica Neue, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+body.catppuccin-macchiato {
+  background-color: #1f1f1f;
+  color: #e0d7e8;
+}
+
+body.catppuccin-latte {
+  background-color: #f0d9d0;
+  color: #5f4b66;
+}
+
+body.synthwave {
+  background: linear-gradient(45deg, #ff00ff, #00ffff);
+  color: #fff;
+}
+
+header h1 {
+  font-family: 'Source Code Pro', monospace;
+}
+
+button {
+  background-color: #6200ea;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3700b3;
+}

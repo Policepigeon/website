@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= post.title %></title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1><%= post.title %></h1>
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </header>
+  <main>
+    <div class="post-content">
+      <%= post.content %>
+    </div>
+    <div class="post-navigation">
+      <% if (prevPost) { %>
+        <a href="/blog/<%= prevPost.filename.replace('.md', '') %>">Previous Post</a>
+      <% } %>
+      <% if (nextPost) { %>
+        <a href="/blog/<%= nextPost.filename.replace('.md', '') %>">Next Post</a>
+      <% } %>
+    </div>
+  </main>
+  <script src="/public/js/app.js"></script>
+</body>
+</html>
