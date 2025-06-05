@@ -23,7 +23,7 @@ const getPosts = () => {
       filename: file
     };
   });
-};
+};  
 
 // Get the current blog posts
 const posts = getPosts();
